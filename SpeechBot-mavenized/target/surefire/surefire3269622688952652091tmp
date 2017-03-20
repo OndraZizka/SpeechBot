@@ -1,0 +1,5 @@
+#surefire
+#Fri Feb 18 05:25:32 CET 2011
+user.dir=/home/ondra/work/BOTS/SpeechBot/SpeechBot-mavenized
+localRepository=/home/ondra/.m2/repository
+basedir=/home/ondra/work/BOTS/SpeechBot/SpeechBot-mavenized

@@ -1,0 +1,9 @@
+export JAVA_HOME=/home/ondra/sw/tools/jdk/sun160
+  Voices available (2) :
+    kevin (general domain)
+    kevin16 (general domain)
+  Randomly picked voice: kevin16
+  Connecting irc.eng.brq.redhat.com ...
+  Joining    #some ...
+ozizka says: Hello people, how are you?
+ozizka says: What would you like to hear?

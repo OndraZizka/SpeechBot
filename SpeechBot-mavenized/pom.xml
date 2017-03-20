@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cz.dynawest.speechbot</groupId>
+  <artifactId>SpeechBot</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>SpeechBot</name>
+  <url>http://maven.apache.org</url>
+  <description>Mavenized version of Jibble SpeechBot.</description>
+  
+  <properties>
+	  <mainClass>cz.dynawest.speechbot.SpeechBot</mainClass>
+  </properties>
+  
+  
+    <build>
+        <plugins>
+            
+            <!-- Appassembler. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.1-SNAPSHOT</version>
+                <configuration>
+                    <programs>
+                        <program>
+                            <mainClass>${mainClass}</mainClass>
+                            <name>${project.name}</name>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
+            
+            <!-- Jar - MANIFEST.MF options. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>${mainClass}</mainClass>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Dependencies to lib/ . -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                    <includeScope>runtime</includeScope>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  <profiles>
+      
+      
+      
+    <!-- "Create distribution zip" profile. -->
+    <profile>
+      <id>dist</id>
+      <build>
+        <plugins>
+
+          <!-- dependency:copy-dependencies -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>dep-copy</id>
+                <phase>package</phase>
+                <goals> <goal>copy-dependencies</goal> </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+
+
+  <dependencies>
+
+    <!-- PircBot -->
+    <dependency>
+        <groupId>cz.dynawest.third.pircbot</groupId>
+        <artifactId>PircBot</artifactId>
+        <version>1.5.0</version>
+    </dependency>
+
+    <!-- FreeTTS -->
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>cmudict04</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>cmulex</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>cmu_time_awb</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>cmutimelex</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>cmu_us_kal</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>en_us</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>freetts</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>freetts-jsapi10</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.freetts</groupId> <artifactId>mbrola</artifactId> <version>1.2</version> </dependency>
+    <dependency> <groupId>cz.dynawest.ext.jsapi</groupId> <artifactId>jsapi</artifactId> <version>1.0</version> </dependency>
+    
+    
+
+
+    <!-- Commons -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Local Maven "repository" -->
+  <repositories>
+    <repository>
+      <id>own-dist-local-repo</id>
+      <url>file:///home/ondra/work/BOTS/SpeechBot/whole/m2repo</url>
+    </repository>
+    <repository><id>ondrazizka-googlecode</id><url>http://ondrazizka.googlecode.com/svn/maven</url></repository>
+  </repositories>
+</project>

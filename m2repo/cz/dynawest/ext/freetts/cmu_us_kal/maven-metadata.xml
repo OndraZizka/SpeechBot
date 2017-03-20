@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cz.dynawest.ext.freetts</groupId>
+  <artifactId>cmu_us_kal</artifactId>
+  <version>1.2</version>
+  <versioning>
+    <versions>
+      <version>1.2</version>
+    </versions>
+    <lastUpdated>20100127153356</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,31 @@
+
+
+Test status:
+============
+
+FreeTTS/MBROLA test passed - speach heard when running:
+
+  java -Dmbrola.base=/home/ondra/work/JawaBot/SpeechBot/mbrola301 -jar bin/FreeTTSHelloWorld.jar mbrola_us1
+
+
+
+SpeechBot test not passed - still can't hear anything. 
+  voice.speak(input);
+is called.
+
+TODO: See how they call it in the FreeTTS test.
+
+
+New wave:
+=========
+
+After solving "Error reading ZIP" by changing FreeTTS's jar's MANIFEST.MF's Class-Path value to reflect my jar names (mavenized),
+I started getting this:
+
+Exception in thread "main" java.lang.ClassCastException: com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory cannot be cast to com.sun.speech.freetts.VoiceDirectory
+        at com.sun.speech.freetts.VoiceManager.getVoices(VoiceManager.java:113)
+        at cz.dynawest.speechbot.synt.MbrolaSpeaker.<init>(MbrolaSpeaker.java:38)
+        at cz.dynawest.speechbot.SpeechBot.<init>(SpeechBot.java:25)
+        at cz.dynawest.speechbot.SpeechBot.main(SpeechBot.java:65)
+
+After re-compiling KevinVoiceDirectory and storing it in jar, it works.

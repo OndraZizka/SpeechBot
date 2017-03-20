@@ -1,0 +1,1 @@
+svn commit -m "Added Maven repo with FreeTTS .jar's."
